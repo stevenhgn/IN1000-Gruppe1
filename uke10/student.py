@@ -17,3 +17,12 @@ class Student:
 
         for fag in self._fagListe:
             print(fag.hentFagNavn())
+
+    def tarFag(self, navn):
+        return navn in self._fagListe
+
+        '''
+        if navn in self._fagListe:
+            return True
+        else:
+            return False'''
