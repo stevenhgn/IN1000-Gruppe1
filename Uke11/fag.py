@@ -17,3 +17,8 @@ class Fag:
         print("Fag: ", self._navn)
         for student in self._studentListe:
             print(student.hentStudentNavn())
+
+
+    #gitt for oppgave 7
+    def fjernStudent(self, student):
+        self._studentliste.remove(student)

@@ -143,3 +143,77 @@ class Studentsystem:
             student.leggTilFag(fag)
             fag.leggTilStudent(student)
             print(navn + " er lagt til i " + kode)
+
+
+
+    def ordrelokke(self):
+        inntast = ""
+        while inntast != "q":
+            self.skrivMeny()
+            inntast = input("Skriv inn ditt valg: ")
+
+            if inntast == "1":
+                self.leggTilStudent()
+            elif inntast == "2":
+                self.leggTilFag()
+            elif inntast == "3":
+                self.leggTilStudentIFag()
+            elif inntast == "4":
+                self.skrivFag()
+            elif inntast == "5":
+                self.skrivStudent()
+            elif inntast == "6":
+                self.finnFagMedFlestStudenter()
+            elif inntast == "7":
+                self.finnStudentMedFlestFag()
+            #elif inntast == "8":
+                #self.fjernStudentFraFag()
+            #elif inntast == "9":
+                #self.skrivAlt()
+            elif inntast != "q":
+                print("Ugylig input.\n")
+
+        print("Avslutter programmet")
+
+    def skrivMeny(self):
+        print("--Meny--")
+        print("1 - Legg til ny student")
+        print("2 - Legg til nytt fag")
+        print("3 - Legg til student i fag")
+        print("4 - Skriv ut studenter ved fag")
+        print("5 - Skriv ut alle fag til student")
+        print("6 - Finn fag som blir tatt av flest")
+        print("7 - Finn student som tar flest fag")
+        #print("8 - Fjern student fra fag")
+        #print("9 - Fullstendig oversikt")
+        print("q - Avslutt")
+
+    #HVIS TID: 9 - fullstendig oversikt
+    def skrivAlt(self):
+        for fag in self._alleFag:
+            fag.skrivStudenterVedFag()
+
+    #HVIS TID:
+    #11-7
+    def fjernStudentFraFag(self):
+        navn = input("Hva heter studenten du vil fjerne fra faget?")
+        stud = self.finnStudent(navn)
+        if stud == None:
+            print(navn + " finnes ikke.")
+            return
+
+        fagNavn = input("Fra hvilket fag vil du fjerne " + navn +"?")
+        fag = self.finnFag(fagNavn)
+        if fag == None:
+            print(fagNavn + " finnes ikke.")
+            return
+
+        #sjekker om studenten tar faget, hvis den ikke tar det gjoer vi ikke noe.
+        if not stud.tarFag(fag):
+            print(navn + " tar ikke " + fagNavn)
+        else:
+            #hvis studenten finnes, faget finnes, og studenten faktisk tar faget, saa kan vi fjerne den!
+            stud.fjernFag(fag)
+            fag.fjernStudent(stud)
+
+            print(navn + " fjernet fra " + fagNavn)

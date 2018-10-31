@@ -21,8 +21,14 @@ class Student:
     def tarFag(self, navn):
         return navn in self._fagListe
 
+        # samme som
         '''
         if navn in self._fagListe:
             return True
         else:
             return False'''
+
+
+    #11- gitt for oppgave 7
+    def fjernFag(self, fag):
+        self._fagliste.remove(fag)
